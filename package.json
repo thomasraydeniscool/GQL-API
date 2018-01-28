@@ -1,0 +1,26 @@
+{
+  "name": "gqless",
+  "description": "",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
+    "graphql": "^0.12.3",
+    "nodemon": "^1.14.11"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasraydeniscool/gqless.git"
+  },
+  "author": "Thomas Rayden",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thomasraydeniscool/gqless/issues"
+  },
+  "homepage": "https://github.com/thomasraydeniscool/gqless"
+}
