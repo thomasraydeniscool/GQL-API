@@ -1,11 +1,8 @@
+import { itsMonday } from './config/cron';
+
 const app = require('./config/app');
 const environment = require('./config/environment');
 const cron = require('./config/cron');
-
-/**
- * Routes
- */
-// import exampleRoutes from './api/example/example.routes';
 
 const GraphQLHandler = require('./graphql/config/graphql.handler');
 
@@ -15,14 +12,12 @@ const api = app((instance) => {
 
 api.listen(
   process.env.PORT || environment.port, 
-  console.log(`server started on port ${environment.port} (${environment.environment})`)
-); // eslint-disable-line no-console
+  console.log(`server started on port ${environment.port} (${environment.environment})`) // eslint-disable-line no-console
+);
 
 /**
- * Initiate cron functions
+ * Initialise cron functions
  */
-// cronPayouts();
-// cronExpire();
-// cronReminders();
+itsMonday();
 
 module.exports = api;

@@ -2,15 +2,11 @@ const {
     GraphQLSchema, 
     GraphQLObjectType,
     GraphQLString,
+    GraphQLList
 } = require('graphql');
 
-const users = [
-    { id: '1', name: 'Thomas Rayden' },
-    { id: '2', name: 'Duncan Rayden' },
-];
-
 const UserType = new GraphQLObjectType({
-    name: 'user',
+    name: 'UserType',
     fields: () => ({
         id: {
             type: GraphQLString,
@@ -22,13 +18,21 @@ const UserType = new GraphQLObjectType({
 });
 
 module.exports = {
-    type: UserType,
-    args: {
-        id: {
-            type: GraphQLString,
+    user: {
+        type: UserType,
+        args: {
+            id: {
+                type: GraphQLString,
+            },
+        },
+        resolve(parentValue, args) {
+            return users.find(user => user.id === args.id);
         },
     },
-    resolve(parentValue, args) {
-
+    users: {
+        type: new GraphQLList(UserType),
+        resolve(parentValue, args) {
+            return users;
+        },
     },
 };
