@@ -6,7 +6,8 @@ const {
     GraphQLNonNull,
 } = require('graphql');
 
-const User = require('./user.model');
+const User = require('../../api/user/user.model');
+
 const UserType = require('./user.type');
 
 module.exports = {
@@ -19,8 +20,8 @@ module.exports = {
         },
         resolve: async (parent, args) => {
             const user = await new User(args).save();
-            if (user) user._id = user._id.toString();
-            return user;
+            if (!user) return null;
+            return Object.assign(user, { _id: user._id.toString() });
         }
     },
 };

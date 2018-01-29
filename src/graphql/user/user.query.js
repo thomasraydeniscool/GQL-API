@@ -3,9 +3,11 @@ const {
     GraphQLString,
     GraphQLList,
     GraphQLInt,
+    GraphQLNonNull,
 } = require('graphql');
 
-const User = require('./user.model');
+const User = require('../../api/user/user.model');
+
 const UserType = require('./user.type');
 
 module.exports = {
@@ -18,11 +20,14 @@ module.exports = {
             name: {
                 type: GraphQLString,
             },
+            role: {
+                type: GraphQLInt,
+            },
         },
-        resolve: async (parent, args) => {
+        resolve: async (parent, args, viewer) => {
             const user = await User.findOne(args);
-            if (user) user._id = user._id.toString();
-            return user;
+            if (!user) return null; 
+            return Object.assign(user, { _id: user._id.toString() });
         },
     },
     users: {
@@ -32,11 +37,10 @@ module.exports = {
                 type: GraphQLInt,
             },
         },
-        resolve: async (parent, args) => {
+        resolve: async (parent, args, viewer) => {
             const users = await User.find(args);
             return users.map(user => {
-                user._id = user._id.toString();
-                return user;
+                return Object.assign(user, { _id: user._id.toString() });
             });
         },
     },
