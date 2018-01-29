@@ -25,14 +25,14 @@ module.exports = {
                 type: GraphQLString,
             },
         },
-        resolve(parentValue, args) {
-            return users.find(user => user.id === args.id);
+        resolve(parent, args) {
+            // return users.find(user => user.id === args.id);
         },
     },
     users: {
         type: new GraphQLList(UserType),
-        resolve(parentValue, args) {
-            return users;
+        resolve(parent, args) {
+            // return users;
         },
     },
 };

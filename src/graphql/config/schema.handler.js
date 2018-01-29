@@ -4,7 +4,7 @@ const user = require('../user/user.schema');
 
 const fields = Object.assign(
     {}, 
-    user,
+    user
 );
 
 const RootQuery = new GraphQLObjectType({
