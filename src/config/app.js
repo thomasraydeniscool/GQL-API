@@ -7,7 +7,7 @@ const environment = require('./environment');
 /**
  * Connect to the database
  */
-// mongoose.connect(environment.database);
+mongoose.connect(environment.database);
 
 module.exports = (routes) => {
   const app = express();

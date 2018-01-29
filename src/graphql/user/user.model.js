@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-import { ROLE_USER, ROLE_ADMIN } from './user.constants';
+const { ROLE_USER, ROLE_ADMIN } = require('./user.constants');
 
 const UserSchema = new mongoose.Schema({
   name: {
