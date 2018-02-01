@@ -6,20 +6,23 @@ const environment = require('../../config/environment');
 const User = require('../../api/user/user.model');
 
 const viewer = (token) => {
-    try {
-        data = decodeToken(token);
-    } catch (error) {
-        // throw 401
-        return;
+    this._constructor = (token) => {
+        if (!token) {
+            return;
+        }
+        let data;
+        try {
+            data = decodeToken(token);
+        } catch(err) {
+            return;
+        }
+        const user = await User.findById(data._id);
+        if (!user) {
+            return;
+        }
+        this.user = user;
     }
-    this.token = token;
-    this.hmac = undefined;
-    this.user = {
-        _id: undefined,
-        name: undefined,
-        role: undefined,
-    };
-    this.expiration = Date.now() + environment.token.expiration;
+    this._constructor(token);
 }
 
 exports.viewer = viewer;

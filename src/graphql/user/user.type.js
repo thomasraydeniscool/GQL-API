@@ -1,20 +1,17 @@
-const {
-    GraphQLObjectType,
-    GraphQLString,
-    GraphQLInt,
-} = require('graphql');
+const User = `
+    type User {
+        _id: String!
+        name: String!
+        role: Int!
+    }
+    extend type Query {
+        users: [User!]!
+    }
+    extend type Mutation {
+        register(name: String!): User!
+    }
+`;
 
-module.exports = new GraphQLObjectType({
-    name: 'UserType',
-    fields: () => ({
-        _id: {
-            type: GraphQLString,
-        },
-        name: {
-            type: GraphQLString,
-        },
-        role: {
-            type: GraphQLInt,
-        },
-    }),
-});
+// we wrap it in a function
+// to avoid strings deduplication
+module.exports = [User];
