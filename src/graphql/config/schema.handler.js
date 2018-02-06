@@ -1,6 +1,10 @@
 const { makeExecutableSchema } = require('graphql-tools');
 
-const User = require('../user');
+const UserType = require('../user/user.type');
+const ChatType = require('../chat/chat.type');
+
+const UserResolvers = require('../user/user.resolvers');
+const ChatResolvers = require('../chat/chat.resolvers');
 
 const SchemaDefinition = `
   schema {
@@ -13,12 +17,17 @@ const RootQuery = `type Query`;
 
 const RootMutation = `type Mutation`;
 
-const resolvers = Object.assign({}, User.resolvers);
+const RootSubscription = `type Subscription`;
+
+const resolvers = Object.assign({}, 
+  UserResolvers,
+  ChatResolvers
+);
 
 exports.schema = makeExecutableSchema({
     typeDefs: [
-      SchemaDefinition, RootQuery, RootMutation,
-      User.type,
+      SchemaDefinition, RootQuery, RootMutation, RootSubscription,
+      UserType, ChatType,
     ],
     resolvers,
 });

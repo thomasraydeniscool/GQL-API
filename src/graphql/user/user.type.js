@@ -1,9 +1,12 @@
+const Chat = require('../chat/chat.type');
+
 const User = `
     type User {
         _id: ID!
         name: String
         email: String!
         role: Int!
+        chats: Chat
     }
     type Token {
         token: String!,
@@ -21,4 +24,4 @@ const User = `
 
 // we wrap it in a function
 // to avoid strings deduplication
-module.exports = [User];
+module.exports = () => [User, Chat];
