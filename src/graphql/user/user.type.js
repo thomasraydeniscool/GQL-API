@@ -2,6 +2,7 @@ const User = `
     type User {
         _id: String!
         name: String!
+        email: String!
         role: Int!
     }
     extend type Query {

@@ -1,12 +1,22 @@
 const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 
-const schema = require('./schema.handler');
+const { schema } = require('./schema.handler');
 const { environment } = require('../../config/environment');
-
-// const viewer = viewer.fromAuthToken(request.auth_token);
+const { Viewer } = require('../shared/auth');
 
 module.exports = (app) => {
-    app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-    if (environment === 'development') app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+    app.use(
+        '/graphql',
+        bodyParser.json(),
+        graphqlExpress((req) => {
+            return {
+                schema,
+                context: {
+                    viewer: new Viewer(req),
+                },
+            };
+        }),
+    );
+    app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 }
