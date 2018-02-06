@@ -12,6 +12,10 @@ const environment = {
   origin: 'http://localhost:4200',
   endPoint: 'http://localhost:4500',
   database: process.env.MONGODB_URI || 'mongodb://localhost/development',
+  token: {
+    secret: 'oo7r2?xi]YA6NE2yeZUtBmiqizbALtbu',
+    expiration: 3 * 24 * 60 * 60 * 1000,
+  },
   log: () => {
     console.log(boxen(listenText, boxOptions));
   },

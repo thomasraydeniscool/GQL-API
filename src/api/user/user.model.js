@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-import bcrypt from 'bcryptjs';
+const bcrypt = require('bcryptjs');
 
 const { ROLE_USER, ROLE_ADMIN } = require('./user.constants');
 

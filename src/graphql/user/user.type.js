@@ -1,15 +1,21 @@
 const User = `
     type User {
-        _id: String!
-        name: String!
+        _id: ID!
+        name: String
         email: String!
         role: Int!
     }
+    type Token {
+        token: String!,
+        user: User!,
+        expiration: String!,
+    }
     extend type Query {
-        users: [User!]!
+        users: [User]
     }
     extend type Mutation {
-        register(name: String!): User!
+        register(email: String!, name: String!, password: String!): Token!
+        login(email: String!, password: String!): Token!
     }
 `;
 
