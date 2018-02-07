@@ -17,16 +17,16 @@ const RootQuery = `type Query`;
 
 const RootMutation = `type Mutation`;
 
-const RootSubscription = `type Subscription`;
+const resolvers = {
+  Query: Object.assign(UserResolvers.Query, ChatResolvers.Query),
+  Mutation: Object.assign(UserResolvers.Mutation, ChatResolvers.Mutation),
+};
 
-const resolvers = Object.assign({}, 
-  UserResolvers,
-  ChatResolvers
-);
+console.log(resolvers);
 
 exports.schema = makeExecutableSchema({
     typeDefs: [
-      SchemaDefinition, RootQuery, RootMutation, RootSubscription,
+      SchemaDefinition, RootQuery, RootMutation,
       UserType, ChatType,
     ],
     resolvers,

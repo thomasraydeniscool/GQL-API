@@ -3,15 +3,16 @@ const Message = require('./message.type');
 const Chat = `
     type Chat {
         _id: ID!
-        users: [User!]!
+        first: ID!
+        seccond: ID!
         messages: [Message]
     }
-    extend type Mutation {
-        newChat(users: [User!]!): Chat
-        newMessage(chat: Chat!, user: User!, body: String!): Message
+    extend type Query {
+        getMessages(chatId: ID!): [Message]
     }
-    extend type Subscription {
-        messageListener(chat: Chat!): Message
+    extend type Mutation {
+        newChat(seccond: ID!): Chat
+        newMessage(chat: ID!, body: String!): Message
     }
 `;
 

@@ -1,23 +1,34 @@
-const User = require('../../api/user/user.model');
-
-const { packageAuth, loginUser } = require('../shared/auth');
+const Chat = require('../../api/chat/chat.model');
+const Message = require('../../api/chat/message.model');
 
 module.exports = {
     Query: {
-        users: async (parent, args, viewer) => {
-            if (viewer.viewer.role === 10) {
-                const users = await User.find(args);
-                return users.map((user) => Object.assign(user, { _id: user._id.toString() }));
+        getMessages: async (parent, { chatId }, { viewer }) => {
+            if (viewer) {
+                const chat = await Chat.findById(chatId)
+                    .populate({ path: 'messages' })
+                    .exec();
+                return chat.messages;
             }
             return null;
         }
     },
     Mutation: {
-        register: async (parent, args) => {
-            const user = await User.create(args);
-            if (user) return packageAuth(user);
+        newChat: async (parent, args, { viewer }) => {
+            if (viewer) {
+                args = Object.assign(args, { first: viewer._id });
+                const chat = await Chat.create(args);
+                return chat;
+            }
             return null;
         },
-        login: async (parent, args) => loginUser(args),
+        newMessage: async (parent, args, { viewer }) => {
+            if (viewer) {
+                args = Object.assign(args, { sender: viewer._id });
+                const message = await Message.create(args);
+                return message;
+            }
+            return null;
+        },
     }
 };

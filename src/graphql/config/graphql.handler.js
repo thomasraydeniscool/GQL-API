@@ -14,7 +14,7 @@ module.exports = (app) => {
             return {
                 schema,
                 context: {
-                    viewer,
+                    viewer
                 },
             };
         }),
