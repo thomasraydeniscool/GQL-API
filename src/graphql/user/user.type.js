@@ -4,8 +4,8 @@ const User = `
     type User {
         _id: ID!
         name: String
-        email: String!
-        role: Int!
+        email: String
+        role: Int
         chats: Chat
     }
     type Token {

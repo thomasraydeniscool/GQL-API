@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const environment = require('./environment');
 
@@ -15,6 +16,8 @@ module.exports = (routes) => {
   /**
    * Middleware
    */
+  app.use(cors({ origin: '*' }));
+  app.enable('trust proxy');
   if (environment.environment === 'development') app.use(morgan('dev'));
 
   /**

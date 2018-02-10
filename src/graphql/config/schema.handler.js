@@ -22,7 +22,7 @@ const resolvers = {
   Mutation: Object.assign(UserResolvers.Mutation, ChatResolvers.Mutation),
 };
 
-console.log(resolvers);
+// console.log(resolvers);
 
 exports.schema = makeExecutableSchema({
     typeDefs: [
