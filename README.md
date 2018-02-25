@@ -4,7 +4,7 @@
 
 GraphQL & Express API boilerplate project
 
-![GraphQL](https://github.com/thomasraydeniscool/GQLess/blob/master/assets/apollostack.jpg)
+![GraphQL](https://github.com/thomasraydeniscool/GQLess/blob/master/assets/apollostack.png)
 
 ## Features
 
