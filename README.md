@@ -2,7 +2,7 @@
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-GraphQL & Express API boilerplate project.
+GraphQL boilerplate project.
 
 > An unfinished example of a GraphQL API from my time learning GraphQL.
 
